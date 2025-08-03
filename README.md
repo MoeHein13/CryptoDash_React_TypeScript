@@ -7,3 +7,7 @@ This is the line that other person edit the same line or same file maybe simutan
 Testing again
 
 Test 1
+
+Test 2 for soft
+
+trying out the revert for practice
