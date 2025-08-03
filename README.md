@@ -10,4 +10,4 @@ Test 1
 
 Test 2 for soft
 
-Mistakenly trying out the revert for practice
+Trying out the revert for practice
