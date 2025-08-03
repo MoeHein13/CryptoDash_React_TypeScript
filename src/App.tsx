@@ -1,8 +1,10 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
 import CoinList from "./Components/CoinList";
-const API_URL =
-  "https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&order=market_cap_desc&per_page=10&page=1&sparkline=false";
+
+const API_URL = import.meta.env.VITE_API_URL;
+
+const URL = "&order=market_cap_desc&per_page=10&page=1&sparkline=false";
 
 const App = () => {
   const [coins, setCoins] = useState([]);
@@ -11,7 +13,7 @@ const App = () => {
 
   const fetchdata = async () => {
     try {
-      const response = await axios.get(API_URL);
+      const response = await axios.get(`${API_URL}${URL}`);
       const data = response.data;
       console.log(data);
       setCoins(data);
