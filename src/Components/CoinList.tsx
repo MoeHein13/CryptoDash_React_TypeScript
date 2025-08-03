@@ -5,6 +5,9 @@ export type Coins = {
   image: string;
   name: string;
   symbol: string;
+  current_price: number;
+  market_cap: number;
+  market_cap_change_percentage_24h: number;
   [key: string]: unknown;
 };
 
