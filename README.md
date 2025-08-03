@@ -1,4 +1,4 @@
-#Crypto Dash Project with React & Typescript
+Crypto Dash Project with React & Typescript
 
 This is to test with the git branch to practice the git merge conflict
 
@@ -10,4 +10,4 @@ Test 1
 
 Test 2 for soft
 
-trying out the revert for practice
+Mistakenly trying out the revert for practice
