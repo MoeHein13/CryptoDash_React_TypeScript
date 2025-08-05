@@ -1,4 +1,4 @@
-import type { Coins } from "./CoinList";
+import { type Coins } from "../App";
 
 type coinProp = {
   coin: Coins;
