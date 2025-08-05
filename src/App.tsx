@@ -1,23 +1,51 @@
-import { useEffect, useState, type ChangeEvent } from "react";
-import axios from "axios";
+import { useState, type ChangeEvent } from "react";
 import CoinList from "./Components/CoinList";
 import CountPage from "./Components/CountPage";
 import FilterCoin from "./Components/FilterCoin";
 import useFetchData from "./Hooks/FetchData";
+import SortCoin from "./Components/SortCoin";
+
+export type Coins = {
+  id: string;
+  image: string;
+  name: string;
+  symbol: string;
+  current_price: number;
+  market_cap: number;
+  market_cap_change_percentage_24h: number;
+  [key: string]: unknown;
+};
 
 const App = () => {
-  const { coins, loading, page, error, setPage } = useFetchData();
+  const { coins, loading, page, error, setPage } = useFetchData() as {
+    coins: Coins[];
+    loading: boolean;
+    page: number;
+    error: string | null;
+    setPage: (page: number) => void;
+  };
 
   const [filterCoin, setFilterCoin] = useState<string>("");
+  const [sortBy, setSortBy] = useState("");
 
   const handleFilter = (e: ChangeEvent<HTMLInputElement>) => {
     setFilterCoin(e.target.value);
-    console.log(filterCoin);
   };
 
   const handlePage = (e: ChangeEvent<HTMLSelectElement>) => {
     setPage(Number(e.target.value));
   };
+
+  const handleSort = (e: ChangeEvent<HTMLSelectElement>) => {
+    setSortBy(e.target.value);
+  };
+
+  const filteredCoin = coins.filter((coin) => {
+    return (
+      coin.name.toLowerCase().includes(filterCoin.toLowerCase()) ||
+      coin.symbol.toLowerCase().includes(filterCoin.toLowerCase())
+    );
+  });
 
   return (
     <div className=" min-h-dvh m-6">
@@ -31,8 +59,9 @@ const App = () => {
           <div className="flex justify-between items-center mb-8 flex-wrap gap-4">
             <FilterCoin filterCoin={filterCoin} handleFilter={handleFilter} />
             <CountPage page={page} handlePage={handlePage} />
+            <SortCoin sortBy={sortBy} onSortChange={handleSort} />
           </div>
-          <CoinList coins={coins} />
+          <CoinList filteredCoins={filteredCoin} />
         </div>
       )}
     </div>
