@@ -42,7 +42,7 @@ const CountPage = ({ page, handlePage }: Countprop) => {
   });
 
   return (
-    <div className="mb-4 flex justify-end items-center">
+    <div className=" flex justify-end items-center shrink-0">
       <label className="font-bold" htmlFor="countpage">
         Show:
       </label>

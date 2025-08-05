@@ -2,37 +2,22 @@ import { useEffect, useState, type ChangeEvent } from "react";
 import axios from "axios";
 import CoinList from "./Components/CoinList";
 import CountPage from "./Components/CountPage";
-
-const API_URL = import.meta.env.VITE_API_URL;
+import FilterCoin from "./Components/FilterCoin";
+import useFetchData from "./Hooks/FetchData";
 
 const App = () => {
-  const [coins, setCoins] = useState([]);
-  const [loading, setLoading] = useState<boolean>(true);
-  const [error, setError] = useState<null | string>(null);
+  const { coins, loading, page, error, setPage } = useFetchData();
 
-  const [page, setPage] = useState(10);
+  const [filterCoin, setFilterCoin] = useState<string>("");
+
+  const handleFilter = (e: ChangeEvent<HTMLInputElement>) => {
+    setFilterCoin(e.target.value);
+    console.log(filterCoin);
+  };
 
   const handlePage = (e: ChangeEvent<HTMLSelectElement>) => {
     setPage(Number(e.target.value));
   };
-
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const response = await axios.get(
-          `${API_URL}&order=market_cap_desc&per_page=${page}&page=1&sparkline=false`
-        );
-        const data = response.data;
-        console.log(data);
-        setCoins(data);
-      } catch (er: unknown) {
-        setError(er instanceof Error ? er.message : "Failed to fetch Error");
-      } finally {
-        setLoading(false);
-      }
-    };
-    fetchData();
-  }, [page]);
 
   return (
     <div className=" min-h-dvh m-6">
@@ -43,7 +28,10 @@ const App = () => {
       {error && <p className="font-bold text-2xl text-blue-400">{error}</p>}
       {!loading && !error && coins.length > 0 && (
         <div>
-          <CountPage page={page} handlePage={handlePage} />
+          <div className="flex justify-between items-center mb-8 flex-wrap gap-4">
+            <FilterCoin filterCoin={filterCoin} handleFilter={handleFilter} />
+            <CountPage page={page} handlePage={handlePage} />
+          </div>
           <CoinList coins={coins} />
         </div>
       )}
