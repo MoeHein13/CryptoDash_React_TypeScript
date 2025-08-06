@@ -5,6 +5,7 @@ import FilterCoin from "../Components/FilterCoin";
 import useFetchData from "../Hooks/FetchData";
 import SortCoin from "../Components/SortCoin";
 import { type Coins } from "../App";
+import LoadingBar from "./LoadingBar";
 
 const HomePage = () => {
   const { coins, loading, page, error, setPage } = useFetchData() as {
@@ -66,9 +67,7 @@ const HomePage = () => {
     <div>
       <div className=" min-h-dvh m-6">
         <h1 className="text-[2rem] mb-[2rem]">🚀Crypto Dash</h1>
-        {loading && (
-          <p className="font-bold text-2xl text-blue-400">Loading....</p>
-        )}
+        {loading && <LoadingBar color="white" />}
         {error && <p className="font-bold text-2xl text-blue-400">{error}</p>}
         {!loading && !error && coins.length > 0 && (
           <div>

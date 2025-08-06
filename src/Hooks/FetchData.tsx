@@ -15,7 +15,7 @@ const useFetchData = () => {
           `${API_URL}&order=market_cap_desc&per_page=${page}&page=1&sparkline=false`
         );
         const data = response.data;
-        console.log(data);
+
         setCoins(data);
       } catch (er: unknown) {
         setError(er instanceof Error ? er.message : "Failed to fetch Error");
