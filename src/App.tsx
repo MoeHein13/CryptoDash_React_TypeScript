@@ -1,9 +1,9 @@
-import { useState, type ChangeEvent } from "react";
-import CoinList from "./Components/CoinList";
-import CountPage from "./Components/CountPage";
-import FilterCoin from "./Components/FilterCoin";
-import useFetchData from "./Hooks/FetchData";
-import SortCoin from "./Components/SortCoin";
+import { Route, Routes } from "react-router";
+import HomePage from "./pages/HomePage";
+import AboutPage from "./pages/AboutPage";
+import Header from "./Components/Header";
+import NotFoundPage from "./pages/NotFoundPage";
+import CoinDetail from "./pages/CoinDetail";
 
 export type Coins = {
   id: string;
@@ -17,54 +17,16 @@ export type Coins = {
 };
 
 const App = () => {
-  const { coins, loading, page, error, setPage } = useFetchData() as {
-    coins: Coins[];
-    loading: boolean;
-    page: number;
-    error: string | null;
-    setPage: (page: number) => void;
-  };
-
-  const [filterCoin, setFilterCoin] = useState<string>("");
-  const [sortBy, setSortBy] = useState("");
-
-  const handleFilter = (e: ChangeEvent<HTMLInputElement>) => {
-    setFilterCoin(e.target.value);
-  };
-
-  const handlePage = (e: ChangeEvent<HTMLSelectElement>) => {
-    setPage(Number(e.target.value));
-  };
-
-  const handleSort = (e: ChangeEvent<HTMLSelectElement>) => {
-    setSortBy(e.target.value);
-  };
-
-  const filteredCoin = coins.filter((coin) => {
-    return (
-      coin.name.toLowerCase().includes(filterCoin.toLowerCase()) ||
-      coin.symbol.toLowerCase().includes(filterCoin.toLowerCase())
-    );
-  });
-
   return (
-    <div className=" min-h-dvh m-6">
-      <h1 className="text-[2rem] mb-[2rem]">🚀Crypto Dash</h1>
-      {loading && (
-        <p className="font-bold text-2xl text-blue-400">Loading....</p>
-      )}
-      {error && <p className="font-bold text-2xl text-blue-400">{error}</p>}
-      {!loading && !error && coins.length > 0 && (
-        <div>
-          <div className="flex justify-between items-center mb-8 flex-wrap gap-4">
-            <FilterCoin filterCoin={filterCoin} handleFilter={handleFilter} />
-            <CountPage page={page} handlePage={handlePage} />
-            <SortCoin sortBy={sortBy} onSortChange={handleSort} />
-          </div>
-          <CoinList filteredCoins={filteredCoin} />
-        </div>
-      )}
-    </div>
+    <>
+      <Header />
+      <Routes>
+        <Route path="/" element={<HomePage />} />
+        <Route path="/about" element={<AboutPage />} />
+        <Route path="/coin/:id" element={<CoinDetail />} />
+        <Route path="*" element={<NotFoundPage />} />
+      </Routes>
+    </>
   );
 };
 
