@@ -1,5 +1,5 @@
 import type { CSSProperties } from "react";
-import { BarLoader } from "react-spinners";
+import { CircleLoader } from "react-spinners";
 
 const overRide: CSSProperties = {
   display: "block",
@@ -10,17 +10,19 @@ type Prop = {
   color?: string;
   height?: number;
   width?: number;
+  size?: number;
 };
 
-const LoadingBar = ({ color = "green", height = 30, width = 100 }: Prop) => {
+const LoadingBar = ({ color = "green", size = 100 }: Prop) => {
   return (
     <div>
-      <BarLoader
+      <CircleLoader
         aria-label="Loading Spinner"
         cssOverride={overRide}
         color={color}
-        height={height}
-        width={width}
+        // height={height}
+        // width={width}
+        size={size}
         data-testid="loader"
       />
     </div>
