@@ -10,32 +10,32 @@ const SortCoin = ({ sortBy, onSortChange }: sortProp) => {
     {
       id: 1,
       value: "market_cap_desc",
-      description: "Market Cap (High To Low)",
+      description: "Market Cap (High To Low Selection)",
     },
     {
       id: 2,
       value: "market_cap_asc",
-      description: "Market Cap (Low To High)",
+      description: "Market Cap (Low To High Selection)",
     },
     {
       id: 3,
       value: "price_desc",
-      description: "Price(High To Low)",
+      description: "Price(High To Low Selection)",
     },
     {
       id: 4,
       value: "price_asc",
-      description: "Price(Low To High)",
+      description: "Price(Low To High Selection)",
     },
     {
       id: 5,
       value: "priceChange_desc",
-      description: "24h Change (High To Low)",
+      description: "24h Change (High To Low Selection)",
     },
     {
       id: 6,
       value: "priceChange_asc",
-      description: "24h Change (Low To High)",
+      description: "24h Change (Low To High Selection)",
     },
   ];
 
