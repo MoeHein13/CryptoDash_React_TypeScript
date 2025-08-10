@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { useParams, Link } from "react-router";
 import axios from "axios";
 import LoadingBar from "./LoadingBar";
+import CoinChart from "../Components/CoinChart";
 
 type CoinDetailProp = {
   id: string;
@@ -155,7 +156,7 @@ const CoinDetail = () => {
             ? new Date(coinDetail.last_updated).toLocaleDateString()
             : "N/A"}
         </h4>
-
+        <CoinChart />
         <p className="font-semibold text-xl mb-3">
           🌐{" "}
           <a
