@@ -156,7 +156,7 @@ const CoinDetail = () => {
             ? new Date(coinDetail.last_updated).toLocaleDateString()
             : "N/A"}
         </h4>
-        <CoinChart />
+        <CoinChart coinId={coinDetail?.id} />
         <p className="font-semibold text-xl mb-3">
           🌐{" "}
           <a
