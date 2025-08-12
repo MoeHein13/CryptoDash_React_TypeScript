@@ -3,6 +3,11 @@
 A cryptocurrency tracking web application that displays real-time market data, price changes, and charts for various coins.  
 Originally built following the **Modern React From The Beginning** course by [Brad Traversy](https://www.traversymedia.com/) and Will Adams on [Udemy](https://www.udemy.com/course/modern-react-from-the-beginning/?couponCode=KEEPLEARNING), but adapted with my own approach in some areas.
 
+## Live Demo
+
+[**View Crypto Dash on Vercel**](https://crypto-dash-react-type-script-l3wphuu5o.vercel.app)
+
+
 ## Features
 
 - **TypeScript Migration** – Entire codebase converted from JavaScript to TypeScript.
