@@ -47,7 +47,7 @@ const CountPage = ({ page, handlePage }: Countprop) => {
         Show:
       </label>
       <select
-        className="rounded-xl shadow-xl px-4 py-2 bg-[#1c1f26] text-white mx-4 outline-0"
+        className="rounded-xl shadow-xl px-4 py-2 bg-[#1c1f26] text-white mx-4 outline-0 cursor-pointer"
         value={page}
         id="countpage"
         onChange={handlePage}

@@ -12,7 +12,7 @@ const FilterCoin = ({ filterCoin, handleFilter }: FilterProp) => {
         type="text"
         value={filterCoin}
         onChange={handleFilter}
-        className="border p-3 w-full rounded-xl "
+        className="border p-3 w-full rounded-xl  "
         placeholder="Filter coins by name or symbol"
       />
     </div>
