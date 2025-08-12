@@ -71,11 +71,11 @@ const CoinChart = ({ coinId }: idProp) => {
         setChartData({
           datasets: [
             {
-              label: "Price (USD)",
+              label: "Price Chart (USD)",
               data: prices,
               fill: true,
-              borderColor: "#007bff",
-              backgroundColor: "rgba (0,123,255,0.1)",
+              borderColor: "#d4941c",
+              backgroundColor: "rgba(0,123,255,0.1)",
               pointRadius: 0,
               tension: 0.3,
             },
@@ -93,7 +93,49 @@ const CoinChart = ({ coinId }: idProp) => {
     fetchData();
   }, [coinId]);
 
-  return <div>CoinChart</div>;
+  const renderCoinChart = () => (
+    <div className="mt-7.5 mb-3">
+      <Line
+        data={chartdata as ChartData}
+        options={{
+          responsive: true,
+          plugins: {
+            legend: { position: "bottom" as const },
+            tooltip: {
+              mode: "index",
+              intersect: false,
+            },
+          },
+          scales: {
+            x: {
+              ticks: {
+                autoSkip: true,
+                maxTicksLimit: 7,
+              },
+              type: "time",
+              time: {
+                unit: "day",
+              },
+            },
+            y: {
+              ticks: {
+                callback: (value) => {
+                  return `$ ${value.toLocaleString()}`;
+                },
+              },
+            },
+          },
+        }}
+      />
+    </div>
+  );
+
+  return (
+    <div>
+      {loading && <p className="text-blue-600">Coin Chart is Loading ..... </p>}
+      {chartdata && renderCoinChart()}
+    </div>
+  );
 };
 
 export default CoinChart;
