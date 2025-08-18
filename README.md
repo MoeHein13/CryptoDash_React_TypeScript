@@ -60,8 +60,7 @@ This project uses the [CoinGecko API](https://www.coingecko.com/en/api) to fetch
 - Used Axios instead of native fetch for HTTP requests.
 - Added a reusable custom hook for API data fetching.
 - Switched to Tailwind CSS instead of native CSS for styling.
-- Introduced a Coin Detail Page with historical charts and external links.
-- Added responsive design improvements and enhanced UI interactions.
+
 
 ## Credits
 
